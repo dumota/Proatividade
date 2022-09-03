@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,12 @@ namespace Proatividade_API
             services.AddDbContext<DataContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("default"))
             );
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options=>
+                    {
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    }
+                );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proatividade_API", Version = "v1" });

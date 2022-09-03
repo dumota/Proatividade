@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Proatividade_API.Models;
 using System.Linq;
+using Proatividade_API.Data;
+using System;
 
 namespace Proatividade_API.Controllers
 {
@@ -11,42 +13,70 @@ namespace Proatividade_API.Controllers
     [Route("api/[controller]")]
     public class AtividadeController : ControllerBase
     {
-        public IEnumerable<Atividade> ListaAtividades = new List<Atividade>()
+        private readonly DataContext _context;
+        public AtividadeController(DataContext context)
         {
-                new Atividade(1),
-                new Atividade(2),
-                new Atividade(3)
+            _context = context;
 
-        };
+        }
 
         [HttpGet]
         public IEnumerable<Atividade> get()
         {
-            return ListaAtividades;
+            return _context.Atividades;
         }
 
         [HttpGet("{id}")]
         public Atividade Get(int id)
         {
-            return ListaAtividades.FirstOrDefault(ati => ati.Id == id);
+            return _context.Atividades.FirstOrDefault(ati => ati.Id == id);
         }
 
         [HttpPost]
         public IEnumerable<Atividade> Post(Atividade atividade)
         {
-            return ListaAtividades.Append<Atividade>(atividade);
+            _context.Atividades.Add(atividade);
+            if (_context.SaveChanges() > 0)
+            {
+                return _context.Atividades;
+            }
+            else
+            {
+                throw new Exception("Voce não consegui adicionar uma atividade");
+            }
+
         }
 
         [HttpPut("{id}")]
-        public string Put(int id)
+        public Atividade Put(int id, Atividade atividade)
         {
-            return "meu primeiro método put";
+            if (atividade.Id != id)
+            {
+                throw new Exception("Você esta tentando atualizar a atividade errada!");
+            }
+            _context.Update(atividade);
+            if (_context.SaveChanges() > 0)
+            {
+                return _context.Atividades.FirstOrDefault(ativ=> ativ.Id == id);
+            }
+            else
+            {
+                return new Atividade();
+            }
         }
+        
 
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public bool Delete(int id)
         {
-            return "meu primeiro método delete";
+            var atividade = _context.Atividades.FirstOrDefault(ativ=> ativ.Id == id);
+
+            if(atividade == null)
+                throw new Exception("Você esta temntando deletar uma atividade que não existe");
+
+                _context.Remove(atividade);
+
+                return _context.SaveChanges() > 0;
         }
     }
 }
