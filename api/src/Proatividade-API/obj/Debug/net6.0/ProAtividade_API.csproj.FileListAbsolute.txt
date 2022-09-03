@@ -1,0 +1,6 @@
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.csproj.AssemblyReference.cache
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.AssemblyInfoInputs.cache
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.AssemblyInfo.cs
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.csproj.CoreCompileInputs.cache
+C:\Users\DevilEduh\Desktop\c#_eccomerce\api\src\Proatividade-API\obj\Debug\net6.0\ProAtividade_API.MvcApplicationPartsAssemblyInfo.cache

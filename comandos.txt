@@ -1,0 +1,7 @@
+dotnet new globaljson --sdk-version 6.0.400 --force
+*usado para mudar as versões do jdk de desenvolvimento
+
+
+dotnet tool list -g
+*mostra a lista de ferramentas que vc tem instalado 
+
