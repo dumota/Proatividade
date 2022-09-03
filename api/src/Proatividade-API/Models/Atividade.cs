@@ -10,7 +10,7 @@ namespace Proatividade_API.Models
 
         public string descricao { get; set; }
 
-        public string prioridade { get; set; }
+        public Prioridade prioridade { get; set; }
 
         public Atividade()
         {
